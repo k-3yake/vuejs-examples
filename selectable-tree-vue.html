@@ -3,8 +3,7 @@
   <li>
     <div
       :class="{bold: isFolder}"
-      @click="toggle"
-      @dblclick="changeType">
+      @click="toggle">
       {{ model.name }}
       <span v-if="isFolder">[{{ open ? '-' : '+' }}]</span>
     </div>
@@ -15,7 +14,6 @@
         :key="index"
         :model="model">
       </item>
-      <li class="add" @click="addChild">+</li>
     </ul>
   </li>
 </script>
@@ -73,18 +71,6 @@ Vue.component('item', {
       if (this.isFolder) {
         this.open = !this.open
       }
-    },
-    changeType: function () {
-      if (!this.isFolder) {
-        Vue.set(this.model, 'children', [])
-        this.addChild()
-        this.open = true
-      }
-    },
-    addChild: function () {
-      this.model.children.push({
-        name: 'new stuff'
-      })
     }
   }
 })
