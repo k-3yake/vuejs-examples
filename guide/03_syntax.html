@@ -1,0 +1,65 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id='app1'>
+  <div v-once>once {{a}}</div>
+  <div>not once {{a}}</div>
+</div>
+<script>
+var vm = new Vue ({
+  el: '#app1',
+  data: {a: 1}
+})
+</script>
+
+<div id='html-app'>
+  <p>mastaches: {{rawHtml}}</p>
+  <p>v-html: <span v-html="rawHtml"></span></p>
+</div>
+<script>
+  var htmlVm = new Vue ({
+    el: '#html-app',
+    data: {rawHtml: '<span style="color: red">this is red!</span>'}
+  })
+</script>
+
+<div id='element-app' v-bind:draggable="a">draggable!</div>
+<script>
+  var elementApp = new Vue ({
+    el: '#element-app',
+    data: { a: true }
+  })
+</script>
+
+<div id='javaScriptSupport-app'>{{ true ? 'support':'a' }}</div>
+<script>
+  var javaScriptSupportApp = new Vue ({
+    el: '#javaScriptSupport-app'
+  })
+</script>
+
+<div id='notExistVue'>{{ true ? 'support':'a' }}</div>
+
+<div><a id='directiveArg-app' v-bind:href="url"> static </a></div>
+<script>
+  var directiveArgApp = new Vue ({
+    el: '#directiveArg-app',
+    data: {url: 'http://hoge'}
+  })
+</script>
+
+
+<div id='directiveDynamicArg-app'>
+  <a v-bind:[dynamicAttributeName]="attributeValue">dynamic</a>
+  <div v-on:[eventName]="loggingHoge">forcas</div>
+</div>
+<script>
+  new Vue ({
+    el: '#directiveDynamicArg-app',
+    data: { dynamicattributename: 'href', attributeValue: 'http://dynamicHoge', eventname: 'click'},
+    methods: {
+      loggingHoge: function () {
+        console.log('call hoge')
+      }
+    }
+  })
+</script>

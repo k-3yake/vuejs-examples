@@ -1,0 +1,60 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id='app1'>
+ {{a}}
+</div>
+<script>
+var data = {a: 1}
+var vm1 = new Vue ({
+  el: '#app1',
+  data: data
+})
+var freezed = {a: 9}
+Object.freeze(freezed)
+var vm2 = new Vue ({
+  el: '#app1',
+  data: freezed
+})
+</script>
+
+<div id='app2'>
+  {{a}}
+</div>
+<script>
+  var freezed = {a: 9}
+  Object.freeze(freezed)
+  var vm3 = new Vue ({
+    el: '#app2',
+    data: freezed
+  })
+</script>
+
+<div id='example'>
+  {{a}}
+  <span>example</span>
+</div>
+<script>
+  var data4 = {a: 1}
+  var vm4 = new Vue ({
+    el: document.getElementById('example'),
+    data: data4
+  })
+</script>
+
+<div id='example2'>
+  <div>example2</div>
+  {{a}}
+</div>
+<script>
+  var data4 = {a: 1}
+  var vm4 = new Vue ({
+    el: '#example2',
+    data: data4,
+    created: function () {
+      console.log('a is: ' + this.a)
+    }
+  })
+  vm4.$watch('a', function (newValue, oldValue) {
+    console.log('change a')
+  })
+</script>
