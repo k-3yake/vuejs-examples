@@ -1,0 +1,87 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="vm1">
+    <h1 v-if="show">Show!</h1>
+    <h1 v-else>Not Show!</h1>
+</div>
+<script>
+    var vm1 = new Vue({
+        el: '#vm1',
+        data: {
+            show: true
+        }
+    })
+</script>
+
+<div id="vm2">
+    <template v-if="show">
+        <div>複数行</div>
+        <h1 >Show!</h1>
+    </template>
+    <template v-else>
+        <div>else 複数行</div>
+        <h1 >Not Show!</h1>
+    </template>
+</div>
+<script>
+    var vm2 = new Vue({
+        el: '#vm2',
+        data: {
+            show: true
+        }
+    })
+</script>
+
+
+<div id="vm3">
+    <template v-if="show === 1">
+        <div>複数行</div>
+        <h1 >Show!</h1>
+    </template>
+    <template v-else-if="show === 2">
+        <div>複数行2</div>
+        <h1 >Show!2</h1>
+    </template>
+    <template v-else>
+        <div>複数行3</div>
+        <h1 >Show!3</h1>
+    </template>
+
+</div>
+<script>
+    var vm3 = new Vue({
+        el: '#vm3',
+        data: {
+            show: 1
+        }
+    })
+</script>
+
+<div id="vm4">
+    <template v-if="userName">
+        <label>userName</label>
+        <input placeholder="userName" key="userName">
+    </template>
+    <template v-else>
+        <label>other</label>
+        <input placeholder="other">
+    </template>
+</div>
+<script>
+    var vm4 = new Vue({
+        el: '#vm4',
+        data: {
+            userName: true
+        }
+    })
+</script>
+
+<div id="vm5" v-show="show">VM5</div>
+<script>
+    var vm5 = new Vue({
+        el: '#vm5',
+        data: {
+            show: true
+        }
+    })
+</script>
