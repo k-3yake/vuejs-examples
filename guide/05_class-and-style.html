@@ -1,0 +1,96 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id = 'vm1' class = 'static' v-bind:class="{ active: isActive, 'text-danger': hasError}" >aaa</div>
+<script>
+    var vm1 = new Vue({
+        el: '#vm1',
+        data: { isActive: true, hasError: false }
+    })
+</script>
+
+
+<div id = 'vm2' v-bind:class='classObject' >vm2</div>
+<script>
+    var vm2 = new Vue({
+        el: '#vm2',
+        data: {
+            classObject: {
+                active: true,
+                'text-danger': false
+            }
+        }
+    })
+</script>
+
+<div id = 'vm3' v-bind:class='classObject' >vm3</div>
+<script>
+    var vm3 = new Vue({
+        el: '#vm3',
+        data: {
+            isActive: true,
+            error: null
+        },
+        computed: {
+            classObject: function() {
+                return {
+                    active: this.isActive && !this.error,
+                    'text-danger': this.error && this.error.type === 'fatal'
+                }
+            }
+        }
+    })
+</script>
+
+
+<div id='vm4' v-bind:class="[isActive ? activeClass : '', errorClass]">vm4</div>
+<script>
+    var vm4 = new Vue({
+        el: '#vm4',
+        data: {
+            isActive: false,
+            activeClass: 'active',
+            errorClass: 'text-danger'
+        }
+    })
+</script>
+
+<div id='vm5' v-bind:class="[ {active: isActive}, errorClass]">vm5</div>
+<script>
+    var vm5 = new Vue({
+        el: '#vm5',
+        data: {
+            isActive: false,
+            errorClass: 'text-danger'
+        }
+    })
+</script>
+
+<div id='vm6' v-bind:style="{ color: activeColor, fontSize: fontSize + 'px' }">vm6</div>
+<script>
+    var vm6 = new Vue({
+        el: '#vm6',
+        data: {
+            activeColor: 'red',
+            fontSize: 20
+        }
+    })
+</script>
+
+
+<div id='vm7' v-bind:style="[styleObject1, styleObject2]">vm7</div>
+<script>
+    var vm7 = new Vue({
+        el: '#vm7',
+        data: {
+            styleObject1: {
+                color: 'red'
+            },
+            styleObject2: {
+                fontSize: '20px'
+            }
+        }
+    })
+</script>
+
+<div id='vm8' v-bind:style="{ display: ['-webkit-box', '-ms-flexbox', 'flex'] }">vm8</div>
+<script> new Vue({ el:'#vm8'})</script>
