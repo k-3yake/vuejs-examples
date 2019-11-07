@@ -1,0 +1,102 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="vm1">
+    <button v-on:click="counter += 1"></button>
+    <div>counter={{counter}}</div>
+</div>
+<script>
+    var vm1 = new Vue({
+        el: "#vm1",
+        data: {
+            counter: 0
+        }
+    })
+</script>
+
+<div id="vm2">
+    <button v-on:click="greet">greet</button>
+</div>
+<script>
+    var vm2 = new Vue({
+        el: "#vm2",
+        data: {
+            name: "Vue.js"
+        },
+        methods: {
+            greet: function (event) {
+                alert('Hello ' + this.name + "!")
+                if (event) {
+                    alert(event.target.tagName)
+                }
+            }
+        }
+    })
+</script>
+
+<div id="vm3">
+    <button v-on:click="say('hello')">Say Hello</button>
+    <button v-on:click="say('wat')">Say Wat</button>
+</div>
+<script>
+    var vm3 = new Vue({
+        el: "#vm3",
+        methods: {
+            say: function (message) {
+                alert(message)
+            }
+        }
+    })
+</script>
+
+<button id="vm4" v-on:click="warn('yet submit', $event)">Submit</button>
+<script>
+    var vm4 = new Vue({
+        el: "#vm4",
+        methods: {
+            warn: function (message, event) {
+                if (event) event.preventDefault()
+                alert(message)
+            }
+        }
+    })
+</script>
+
+
+
+<div id="vm5">
+    <div v-on:click="showAlert">
+        <div v-on:click="showAlert">
+            <div v-on:click.stop="showAlert">
+                <input type="text" > </input>
+                Alert!
+            </div>
+        </div>
+    </div>
+    <form v-on:submit.prevent="onSubmit">
+        <button type="submit">submit</button>
+    </form>
+    <input v-on:keyup.enter="onSubmit"></input>
+    <div v-on:click.self="callParent">parent
+        <div v-on:click="callChaild">chaild</div>
+    </div>
+    <button @click.ctrl.exact="showAlert">showAlertWithCtrlOnly</button>
+</div>
+<script>
+    var vm5 = new Vue({
+        el: "#vm5",
+        methods: {
+            showAlert: function (event) {
+                alert("Click!")
+            },
+            onSubmit: function () {
+                alert("submit!")
+            },
+            callParent: function () {
+                alert("parent")
+            },
+            callChaild: function () {
+                alert("chaild")
+            }
+        }
+    })
+</script>
