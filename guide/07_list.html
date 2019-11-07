@@ -1,0 +1,97 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<ul id="vm1">
+    <li v-for="(item, i) in items">
+        <span v-show="item.show">{{parentMessage}}-{{i}}-{{item.message}}</span>
+    </li>
+</ul>
+<script>
+    var vm1 = new Vue({
+        el: '#vm1',
+        data: {
+            parentMessage: 'p1',
+            items: [
+                {message: 'm1', show: true},
+                {message: 'm2', show: false},
+                {message: 'm3', show: true}
+            ]
+        }
+    })
+</script>
+
+<ul id="vm2">
+    <li v-for="(value, name, index) of obj">
+        {{index}}:{{name}} = {{ value }}
+    </li>
+</ul>
+
+<script>
+var vm2 = new Vue({
+    el:"#vm2",
+    data: {
+        obj: {
+            val1: 'value1',
+            val2: 'value2',
+            val3: 'value3'
+        }
+    }
+})
+</script>
+
+<ul id="vm3">
+    <li v-for="item of items">
+        {{item.name}}
+        {{item.message}}
+    </li>
+</ul>
+<script>
+    var vm3 = new Vue({
+        el:"#vm3",
+        data: {
+            items: [
+                {message: 'm1'},
+                {message: 'm2'},
+                {message: 'm3'},
+            ]
+        }
+    })
+</script>
+
+<ul id="vm4">
+    <li v-for="n of evenNumbers">{{n}}</li>
+</ul>
+<script>
+    var vm4 = new Vue({
+        el:"#vm4",
+        data: {
+            numbers:[1,2,3,4,5]
+        },
+        computed: {
+            evenNumbers: function(){
+                return this.numbers.filter( function(number) {
+                    return number % 2 === 0
+                })
+            }
+        }
+    })
+</script>
+
+<span id="vm5">
+    <ul v-if="items.length > 0">
+        <li v-for="item of items" v-if="item.show">{{item.name}}</li>
+    </ul>
+    <p v-else>Nothing!</p>
+</span>
+
+<script>
+    var vm5 = new Vue({
+        el:"#vm5",
+        data: {
+            items:[
+                {name:"item1", show:true},
+                {name:"item2", show:false},
+                {name:"item3", show:true}
+            ]
+        }
+    })
+</script>
