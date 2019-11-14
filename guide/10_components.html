@@ -1,0 +1,151 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<script>
+    Vue.component('button-counter', {
+        data: function() {
+            return {  innerCount: 0 }
+        },
+        methods: {
+            increment: function () {
+                return this.innerCount++
+            }
+        },
+        template: '<button v-on:click="increment()">click count={{ innerCount }}</button>'
+    })
+</script>
+
+<div id="vm1">
+    <button-counter></button-counter>
+    <button-counter></button-counter>
+    <button-counter></button-counter>
+</div>
+<script>
+    var vm1 = new Vue({
+        el: '#vm1'
+    })
+</script>
+
+
+<script>
+    Vue.component('my-input' , {
+        props: ['placeholder'],
+        template:
+            '<span>' +
+                '<input type="text" v-bind:placeholder="placeholder">' +
+                '<div>{{placeholder}}</div>' +
+            '</span>'
+    })
+</script>
+<div id="vm2">
+    <my-input placeholder="hoge"></my-input>
+    <my-input placeholder="foo"></my-input>
+</div>
+<script>
+    var vm2 = new Vue({ el:'#vm2'})
+</script>
+
+
+<!--
+<script>
+    Vue.component("blog-post",{
+        props: ['title','content', 'published-day'],
+        template:
+            `<span>
+                 <h3>{{title}}</h3>
+                 <span v-html="content"></span>
+                 <div>投稿日 {{ publishedDay }}</div>
+             </span>`
+    })
+</script>
+<div id="vm3">
+    <blog-post v-for="post in posts" v-bind:key="post.id" v-bind:title="post.title" v-bind:content="post.content" v-bind:published-day="post.publishedAt"></blog-post>
+</div>
+
+<script>
+    var vm3 = new Vue({
+        el: '#vm3',
+        data: {
+            posts: [
+                { id: 1, title: 'blog1', content:'<div>blog1のコンテント</div>', publishedAt: Date(Date.now())},
+                { id: 2, title: 'blog2', content:'<span>blog2のコンテント</span>', publishedAt: Date(Date.now())}
+            ]
+        }
+    })
+</script>
+↓↓↓↓↓↓↓リファクタ↓↓↓↓↓↓↓
+-->
+<script>
+    Vue.component("blog-post",{
+        props: ['post'],
+        template:
+            `<span>
+                 <h3>{{post.title}}</h3>
+                 <span v-html="post.content"></span>
+                 <div>投稿日 {{ post.publishedAt }}</div>
+                 <button v-on:click="$emit('enlarge-text', 0.9)">enlarge text</button>
+             </span>`
+    })
+</script>
+<div id="vm3" v-bind:style="{ fontSize: postFfontSize + 'em'} " >
+    <blog-post v-for="post in posts" v-bind:key="post.id" v-bind:post="post"　v-on:enlarge-text="onEnlargeText"></blog-post>
+</div>
+<script>
+    var vm3 = new Vue({
+        el: '#vm3',
+        data: {
+            postFfontSize: 1,
+            posts: [
+                { id: 1, title: 'blog1', content:'<div>blog1のコンテント</div>', publishedAt: Date(Date.now())},
+                { id: 2, title: 'blog2', content:'<span>blog2のコンテント</span>', publishedAt: Date(Date.now())}
+            ]
+        },
+        methods:{
+            onEnlargeText: function(enlargeAmount){
+                this.postFfontSize += enlargeAmount
+            }
+        }
+    })
+</script>
+
+
+
+<script>
+    Vue.component('custom-input',{
+        props:['value'],
+        template:
+            `<span>
+                 <input v-bind:value="value" v-on:input="$emit('input',$event.target.value)">
+                 <div>{{ value }}</div>
+             </span>`
+    })
+</script><div id="vm4">
+    <custom-input v-model="inputedText"></custom-input>
+</div>
+<script>
+    var vm4 = new Vue({
+        el: '#vm4',
+        data: {
+            inputedText: 'init'
+        }
+    })
+</script>
+
+
+<div id="vm5">
+    <error-text>hogehoe</error-text>
+    <error-text>fugafuga</error-text>
+</div>
+<script>
+    Vue.component('error-text',{
+        template:
+        `<div>
+            <strong>Error!</strong>
+            <slot></slot>
+        </div>`
+    })
+</script>
+<script>
+    var vm5=new Vue({
+        el: '#vm5',
+    })
+</script>
