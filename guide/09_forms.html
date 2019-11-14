@@ -1,0 +1,120 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="vm1">
+    <div>
+        <input v-model="message">
+        <p>{{message}}</p>
+    </div>
+    <div>
+        <span>muilt line message is:</span>
+        <p style="white-space: pre-line;">{{message}}</p>
+        <textarea v-model="message"></textarea>
+    </div>
+    <div>
+        <input type="checkbox" id="checkBox1" v-model="checked">
+        <label for="checkBox1">{{checked}}</label>
+    </div>
+</div>
+<script>
+    var vm1 = new Vue({
+        el:"#vm1",
+        data: {
+            message: '',
+            checked: false
+        }
+    })
+</script>
+
+<div id="vm2">
+    <div>
+        <input type="checkbox" id="jhon" value="jhon" v-model="checkNames" ><label for="jhon"></label>
+        <input type="checkbox" id="jack" value="jack" v-model="checkNames" ><label for="jack"></label>
+        <span>{{checkNames}}</span>
+    </div>
+    <div>
+        <input type="radio" id="One" value="one" v-model="picked"><label for="One" >One</label>
+        <input type="radio" id="Two" value="two" v-model="picked"><label for="Two" >Two</label>
+        <span> {{picked}} </span>
+    </div>
+    <div>
+        <select v-model="selected" multiple>
+            <option disabled value="">Please select.</option>
+            <option value="a" >A</option>
+            <option value="b" >B</option>
+            <option value="c" >C</option>
+        </select>
+        <span>{{ selected }}</span>
+    </div>
+    <div>
+        <select v-model="selected2">
+            <option v-for="option of options" v-bind:value="option.value">{{option.text}}</option>
+        </select>
+        <span>{{ selected2 }}</span>
+    </div>
+</div>
+<script>
+    var vm2 = new Vue({
+        el:"#vm2",
+        data: {
+            checkNames: [],
+            picked: null,
+            selected: [],
+            selected2: [],
+            options: [
+                { text:"Please select", value:""},
+                { text:"Z", value:"z"},
+                { text:"X", value:"x"},
+                { text:"Y", value:"y"}
+            ]
+        }
+    })
+</script>
+
+
+<div id="vm3">
+    <input type="radio" v-model="selectedRadioValue" v-bind:value="radioValue">
+    <input type="radio" v-model="selectedRadioValue" v-bind:value="radioValue2">
+    <div>selectedRadioValue:{{selectedRadioValue}}</div>
+</div>
+<script>
+    var vm3 = new Vue({
+        el:"#vm3",
+        data: {
+            selectedRadioValue:null,
+            radioValue:"hoge",
+            radioValue2:"foo"
+        }
+    })
+</script>
+
+<div id="vm4">
+    <div>
+        <input type="text" v-model.lazy.trim="textValue" placeholder="lazy.trim">
+        <span>trueValue:{{trueValue}}</span>
+    </div>
+    <div>
+        <input type="text" v-model.number="age" placeholder="number">
+        <span>age:{{ age }}</span>
+    </div>
+
+</div>
+<script>
+    var vm4 = new Vue({
+        el:"#vm4",
+        data: {
+            trueValue: 'init',
+            age: 'init'
+        },
+        computed:{
+            textValue:{
+                get: function(){
+                    return this.trueValue
+                },
+                set: function(newValue){
+                    alert('[' + newValue + ']')
+                    this.trueValue = newValue
+                }
+            },
+        }
+    })
+</script>
