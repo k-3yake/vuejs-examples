@@ -1,0 +1,99 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="vm1">
+    <blog-post v-bind='post'></blog-post>
+</div>
+<script>
+    var blogPost = {
+        props: {'postTitle': Number },
+        template: `<div>{{postTitle}}</div>`
+    }
+    var vm1 = new Vue({
+        el: '#vm1',
+        data: {
+            post: {
+                postTitle: 1
+            }
+        },
+        components:{
+            'blog-post': blogPost
+        }
+
+    })
+</script>
+
+<div id="vm2">
+    <div>vm2</div>
+    <counter v-bind:initial-counter="parentrCounter" v-bind:size="parentSize"></counter>
+<!--
+    <counter v-bind:initial-counter="parentrCounter" ></counter>
+-->
+</div>
+<script>
+    var counter = {
+        props: {
+            initialCounter: Number,
+            size:{
+                type: Number,
+                required: true,
+                default: 0
+            }
+        },
+        data: function(){
+            return {
+                childCounter: this.initialCounter
+            }
+        },
+        computed: {
+            childSize: function () {
+                return 'size' + this.size
+            }
+        },
+        template:
+            `<span>
+                <div>initialCounter:{{ childCounter }}</div>
+                <div>size:{{ childSize }}</div>
+             </span>`
+    }
+    var vm2 = new Vue({
+        el: "#vm2",
+        components: {
+            counter: counter
+        },
+        data: {
+            parentrCounter: 0,
+            parentSize: 1
+        }
+    })
+</script>
+
+
+<script>
+    var compChild = {
+        inheritAttrs: false,
+        props: [`type`],
+        template: `<input v-bind:type="type" placeholder="child">
+`
+    }
+    var compParent = {
+        template: `<comp-child placeholder="parent" type="checkbox" hoge="foo"></comp-child>`,
+        components:{
+            compChild: compChild
+        }
+    }
+</script>
+<div id="vm3">
+    <comp-parent></comp-parent>
+</div>
+<script>
+    var vm3 = new Vue({
+        el:'#vm3',
+        components: {
+            compParent: compParent
+        }
+    })
+</script>
+
+
+
+
