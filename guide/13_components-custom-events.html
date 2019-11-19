@@ -1,0 +1,67 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="vm1">
+    <!--<button v-on:click="$emit('do-button-event')">doEvent</button>-->
+    <button v-on:click="changeMessage">doEvent</button>
+    <button v-on:do-button-event="changeMessage">{{ message }}</button>
+</div>
+<script>
+    var vm1 = new Vue({
+        el: '#vm1',
+        data: {
+            message: 'a'
+        },
+        methods: {
+            changeMessage: function () {
+                alert('a')
+                this.message = 'changed'
+            }
+        }
+    })
+</script>
+
+<div id="vm2">
+    <my-check-box></my-check-box>
+    <input type="checkbox" v-model="normal"> //v-modelの値がcheckdのvalueに束縛される
+</div>
+<script>
+    var myCheckBox = {
+        template:
+            `<input type="checkbox" value="submitSendValue">`
+    }
+    var vm2 = new Vue({
+        el: '#vm2',
+        data:{
+            normal:true
+        },
+        components: {
+            myCheckBox: myCheckBox
+        }
+    })
+</script>
+
+<div id="vm3">
+    <base-input v-on:focas.native="onFocus"></base-input>
+</div>
+<script>
+    var baseInput = {
+        props:['value'],
+        template:
+            `<input
+                 v-bind="$attrs"
+                 v-bind:value="value"
+                 v-on:input="$emit('input',$event.target.value)"
+             >`
+    }
+    var vm3 = new Vue({
+        el: '#vm3',
+        components: {
+            baseInput: baseInput
+        },
+        methods: {
+            onFocus: function(){
+                alert('onFocus')
+            }
+        }
+    })
+</script>
