@@ -1,4 +1,6 @@
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js">
+</script>
+
 
 <div id="vm1">
     <!--<button v-on:click="$emit('do-button-event')">doEvent</button>-->
@@ -41,27 +43,66 @@
 </script>
 
 <div id="vm3">
-    <base-input v-on:focas.native="onFocus"></base-input>
+    <div>labelのフォーカスイベントは捕まえられない
+        <label v-on:focus="message">aaaa</label>
+    </div>
+    <div>inputなのでフォーカスイベントが捕まえられる
+        <input v-on:focus="message">
+    </div>
+    <div>コンポーネントのルートのフォーカスイベントを捕まえたいのにnativeがないのでイベントが捕まえられてない
+        <input-root v-on:focus="message"></input-root>
+    </div>
+    <div>nativeによりコンポーネントのルートに対するフォーカスイベントが捕まえられる
+        <input-root v-on:focus.native="message"></input-root>
+    </div>
+    <div>labelでnestしたんでnativeでもフォーカスイベントが捕まえられない。
+        <nested-input-root v-on:focus.native="message" value="val"></nested-input-root>
+    </div>
+    <div>リスナー経由でinputのフォーカスイベントを捕まえる。
+        <nested-input-root-with-listener v-on:focus="message" ></nested-input-root-with-listener>
+    </div>
+
 </div>
 <script>
-    var baseInput = {
+    var inputRoot = {
         props:['value'],
         template:
-            `<input
-                 v-bind="$attrs"
-                 v-bind:value="value"
-                 v-on:input="$emit('input',$event.target.value)"
-             >`
+          `<input>`
+    }
+    var nestedInputRoot = {
+        props:['value'],
+        template:
+            `<label>
+                {{value}}
+                 <input>
+             </label>`
+    }
+    var nestedInputRootWithListener = {
+        props:['value'],
+        template:
+            `<label>
+                {{value}}
+                 <input v-on="inputListeners">
+             </label>`,
+        computed: {
+            inputListeners: function () {
+                return Object.assign({}, this.$listeners, {})
+            }
+        },
     }
     var vm3 = new Vue({
         el: '#vm3',
         components: {
-            baseInput: baseInput
+            inputRoot: inputRoot,
+            nestedInputRoot: nestedInputRoot,
+            nestedInputRootWithListener: nestedInputRootWithListener
         },
         methods: {
-            onFocus: function(){
-                alert('onFocus')
+            message: function(){
+                alert('message')
             }
+
         }
     })
 </script>
+
