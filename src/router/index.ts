@@ -23,6 +23,12 @@ const routes = [
     name: '14slot',
     component: () => import('../views/14_slot/14_slot.vue')
 
+  },
+  {
+    path: '/15dynamic',
+    name: '15dynamic',
+    component: () => import('../views/15_components-dynamic-async/15_components-dynamic-async.vue')
+
   }
 
 ]
