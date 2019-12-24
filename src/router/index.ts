@@ -29,6 +29,12 @@ const routes = [
     name: '15dynamic',
     component: () => import('../views/15_components-dynamic-async/15_components-dynamic-async.vue')
 
+  },
+  {
+    path: '/16edge-case',
+    name: '16edge-case',
+    component: () => import('../views/16_components-edge-case/EdgeCaseApp.vue')
+
   }
 
 ]

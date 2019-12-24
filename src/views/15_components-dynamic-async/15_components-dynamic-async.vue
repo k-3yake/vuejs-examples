@@ -25,7 +25,7 @@
         components: {
             InputComponent1,
             InputComponent2,
-            AsyncComponent
+
         }
     })
     export default class AppDynamicAsync extends Vue {

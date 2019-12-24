@@ -7,5 +7,8 @@
     <div>
       <router-link to="/15dynamic">15_dynamic</router-link>
     </div>
+    <div>
+      <router-link to="/16edge-case">16edge-case</router-link>
+    </div>
   </div>
 </template>
