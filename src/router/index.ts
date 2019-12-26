@@ -34,7 +34,11 @@ const routes = [
     path: '/16edge-case',
     name: '16edge-case',
     component: () => import('../views/16_components-edge-case/EdgeCaseApp.vue')
-
+  },
+  {
+    path: '/17transition',
+    name: '17transition',
+    component: () => import('../views/17_transition/TransitionApp.vue')
   }
 
 ]

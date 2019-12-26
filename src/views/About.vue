@@ -10,5 +10,8 @@
     <div>
       <router-link to="/16edge-case">16edge-case</router-link>
     </div>
+    <div>
+      <router-link to="/17transition">17transiton</router-link>
+    </div>
   </div>
 </template>
