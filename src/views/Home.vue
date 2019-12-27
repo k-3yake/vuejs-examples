@@ -12,5 +12,8 @@
     <div>
       <router-link to="/17transition">17transiton</router-link>
     </div>
+    <div>
+      <router-link to="/18mixin">18mixin</router-link>
+    </div>
   </div>
 </template>

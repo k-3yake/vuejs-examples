@@ -31,8 +31,12 @@ const routes = [
     path: '/17transition',
     name: '17transition',
     component: () => import('../views/17_transition/TransitionApp.vue')
+  },
+  {
+    path: '/18mixin',
+    name: '18mixin',
+    component: () => import('../views/18_mixin/MixInApp.vue')
   }
-
 ]
 
 const router = new VueRouter({
