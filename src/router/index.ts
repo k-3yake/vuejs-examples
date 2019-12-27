@@ -36,6 +36,11 @@ const routes = [
     path: '/18mixin',
     name: '18mixin',
     component: () => import('../views/18_mixin/MixInApp.vue')
+  },
+  {
+    path: '/19customDirective',
+    name: '19customDirective',
+    component: () => import('../views/19_custom-directive/CustomDirectiveApp.vue')
   }
 ]
 

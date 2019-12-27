@@ -15,5 +15,8 @@
     <div>
       <router-link to="/18mixin">18mixin</router-link>
     </div>
+    <div>
+      <router-link to="/19customDirective">19customDirective</router-link>
+    </div>
   </div>
 </template>
