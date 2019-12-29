@@ -18,5 +18,8 @@
     <div>
       <router-link to="/19customDirective">19customDirective</router-link>
     </div>
+    <div>
+      <router-link to="/20RenderFunction">20RenderFunction</router-link>
+    </div>
   </div>
 </template>

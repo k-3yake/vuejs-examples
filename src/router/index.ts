@@ -41,6 +41,11 @@ const routes = [
     path: '/19customDirective',
     name: '19customDirective',
     component: () => import('../views/19_custom-directive/CustomDirectiveApp.vue')
+  },
+  {
+    path: '/20renderFunction',
+    name: '20renderFunction',
+    component: () => import('../views/20_render-function/RenderFunctionApp.vue')
   }
 ]
 
