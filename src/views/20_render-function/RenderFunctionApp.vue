@@ -6,13 +6,14 @@
         <Head :level="2">Head!!</Head>
         <Duplicate></Duplicate>
         <CustomInput></CustomInput>
-        <WithSlotsComponent>WithSlotsComponent</WithSlotsComponent>
+        <HelloWorld></HelloWorld>
     </div>
 </template>
 
 <script lang="ts">
     import {Vue, Component, Prop} from 'vue-property-decorator'
     import {CreateElement, RenderContext, VNode} from "vue";
+    import HelloWorld from "@/views/20_render-function/HelloWorld.tsx";
 
     @Component
     class Head extends Vue {
@@ -33,8 +34,8 @@
 
     @Component
     class CustomInput extends Vue {
-        @Prop() value: string = "init text."
-
+        private value: string = "init text."
+@Prop()
         public render(createElement: CreateElement): VNode {
             var self = this;
             var input = createElement('input',{
@@ -55,7 +56,7 @@
     }
 
     @Component({
-        components: { Head, Duplicate, CustomInput }
+        components: { Head, Duplicate, CustomInput, HelloWorld }
     })
     export default class Hoge extends Vue {   }
 </script>
