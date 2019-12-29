@@ -7,7 +7,7 @@
 
 <script lang="ts">
     import {Component, Prop, Vue} from 'vue-property-decorator';
-    import {User} from "@/views/14_slot/modules";
+    import {User} from "@/views/guide/14_slot/modules";
 
     @Component
     export default class CurrentUser extends Vue {

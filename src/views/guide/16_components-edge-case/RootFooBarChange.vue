@@ -10,7 +10,7 @@
 </template>
 <script lang="ts">
     import {Component, Vue} from 'vue-property-decorator'
-    import BaseInput from "@/views/16_components-edge-case/BaseInput.vue";
+    import BaseInput from "@/views/guide/16_components-edge-case/BaseInput.vue";
     @Component({
         components: {BaseInput}
     })

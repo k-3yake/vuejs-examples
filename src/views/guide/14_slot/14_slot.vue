@@ -29,10 +29,10 @@
 
 <script lang="ts">
     import {Component, Vue} from 'vue-property-decorator'
-    import NavigationLink from '@/views/14_slot/NavigationLink.vue'
-    import CurrentUser from "@/views/14_slot/CurrentUser.vue";
-    import TodoList from "@/views/14_slot/ToDoList.vue";
-    import {TodoItem} from "@/views/14_slot/TodoItem";
+    import NavigationLink from '@/views/guide/14_slot/NavigationLink.vue'
+    import CurrentUser from "@/views/guide/14_slot/CurrentUser.vue";
+    import TodoList from "@/views/guide/14_slot/ToDoList.vue";
+    import {TodoItem} from "@/views/guide/14_slot/TodoItem";
 
     @Component({
         components: {

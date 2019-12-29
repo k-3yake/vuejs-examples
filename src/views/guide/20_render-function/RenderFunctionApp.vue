@@ -13,7 +13,7 @@
 <script lang="ts">
     import {Vue, Component, Prop} from 'vue-property-decorator'
     import {CreateElement, RenderContext, VNode} from "vue";
-    import HelloWorld from "@/views/20_render-function/HelloWorld.tsx";
+    import HelloWorld from "@/views/guide/20_render-function/HelloWorld.tsx";
 
     @Component
     class Head extends Vue {

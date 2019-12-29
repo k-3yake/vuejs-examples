@@ -10,7 +10,7 @@
 
 <script lang="ts">
     import {Component, Prop, Vue} from 'vue-property-decorator'
-    import { TodoItem } from '@/views/14_slot/TodoItem'
+    import { TodoItem } from '@/views/guide/14_slot/TodoItem'
 
     @Component
     export default class TodoList extends Vue {
