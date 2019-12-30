@@ -56,8 +56,12 @@ const routes = [
     path: '/Commits',
     name: 'Commits',
     component: () => import('../views/examples/commits/CommitsApp.vue')
+  },
+  {
+    path: '/GridComponent',
+    name: 'GridComponent',
+    component: () => import('../views/examples/grid-component/HeroesGridApp.vue')
   }
-
 ]
 
 const router = new VueRouter({
