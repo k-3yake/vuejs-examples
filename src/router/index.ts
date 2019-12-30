@@ -51,7 +51,13 @@ const routes = [
     path: '/MarkDown',
     name: 'MarkDown',
     component: () => import('../views/examples/markdown/MarkDownApp.vue')
+  },
+  {
+    path: '/Commits',
+    name: 'Commits',
+    component: () => import('../views/examples/commits/CommitsApp.vue')
   }
+
 ]
 
 const router = new VueRouter({

@@ -9,7 +9,7 @@
 
     @Mixin
     class Hoge extends Vue {
-        hogeMessage() { console.log("I'm Hoge.") }
+        hogeMessage() { console.log("I'm CommitsApp.") }
     }
 
     @Mixin

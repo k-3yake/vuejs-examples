@@ -24,5 +24,8 @@
     <div>
       <router-link to="/MarkDown">MarkDown</router-link>
     </div>
+    <div>
+      <router-link to="/Commits">Commits</router-link>
+    </div>
   </div>
 </template>
