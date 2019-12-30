@@ -21,5 +21,8 @@
     <div>
       <router-link to="/20RenderFunction">20RenderFunction</router-link>
     </div>
+    <div>
+      <router-link to="/MarkDown">MarkDown</router-link>
+    </div>
   </div>
 </template>

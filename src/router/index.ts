@@ -46,6 +46,11 @@ const routes = [
     path: '/20renderFunction',
     name: '20renderFunction',
     component: () => import('../views/guide/20_render-function/RenderFunctionApp.vue')
+  },
+  {
+    path: '/MarkDown',
+    name: 'MarkDown',
+    component: () => import('../views/examples/markdown/MarkDownApp.vue')
   }
 ]
 
