@@ -19,7 +19,7 @@
         components: { GridComponent }
     })
     export default class HeroesGridApp extends Vue {
-        private heroes: Array<Hero> = [ new Hero("a", 200), new Hero("b", 300), new Hero("c", 400) ]
+        private heroes: Array<Hero> = [ new Hero("rider man", 200), new Hero("x", 300), new Hero("v3", 400) ]
         private heroParamNames: Array<string> = ["name", "power"]
         private filterKeyword = ""
 
@@ -28,7 +28,7 @@
             if(this.filterKeyword && this.filterKeyword.length > 0) {
                 return (hero: Hero) =>  { return hero.containts(this.filterKeyword) }
             } else {
-                return (hero: Hero) =>  { return true }
+                return () =>  { return true }
             }
         }
     }
@@ -49,8 +49,6 @@
         private containtsBase(target:String, keyword: String): Boolean {
             return target.toLocaleLowerCase().indexOf(keyword.toLocaleLowerCase()) >= 0
         }
-
-
     }
 </script>
 
