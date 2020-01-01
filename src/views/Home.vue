@@ -30,5 +30,8 @@
     <div>
       <router-link to="/GridComponent">GridComponent</router-link>
     </div>
+    <div>
+      <router-link to="/TreeView">TreeView</router-link>
+    </div>
   </div>
 </template>

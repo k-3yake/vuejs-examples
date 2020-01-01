@@ -61,7 +61,13 @@ const routes = [
     path: '/GridComponent',
     name: 'GridComponent',
     component: () => import('../views/examples/grid-component/HeroesGridApp.vue')
+  },
+  {
+    path: '/TreeView',
+    name: 'TreeView',
+    component: () => import('../views/examples/tree/TreeViewApp.vue')
   }
+
 ]
 
 const router = new VueRouter({
