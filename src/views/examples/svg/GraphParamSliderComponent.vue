@@ -1,9 +1,9 @@
 <template>
     <div>
-        <div v-for="[key, val] in allParams()">
+        <div v-for="key in params.keys()">
             <span>{{key}}</span>
-            <input type="range" :value="val" @change="changeParamValue($event, key)" min="0" max="100">
-            <span>{{val}}</span>
+            <input type="range" :value="params.value(key)" @change="changeParamValue($event, key)" min="0" max="100">
+            <span>{{params.value(key)}}</span>
             <button @click="deleteParam(key)">X</button>
         </div>
         <input name="newlabel" v-model="newLabel">
@@ -19,10 +19,6 @@
     export default class GraphParamSliderComponent extends Vue {
         @Prop({ required: true}) params!: Params
         private newLabel: String = ""
-
-        allParams() {
-            return Array.from(this.params.getAll())
-        }
 
         add() {
             this.params.add(this.newLabel)

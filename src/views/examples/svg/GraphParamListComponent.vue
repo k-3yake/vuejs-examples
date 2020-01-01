@@ -1,7 +1,7 @@
 <template>
     <div>
-        <div v-for="[key,val] in params.getAll()">
-            <div>{{key}}, {{val}}</div>
+        <div v-for="key in params.keys()">
+            <div>{{key}}, {{params.value(key)}}</div>
         </div>
     </div>
 </template>
@@ -12,7 +12,7 @@
 
     @Component
     export default class GraphParamListComponent extends Vue {
-        @Prop({ required: true}) params: Params
+        @Prop({ required: true}) params!: Params
     }
 </script>
 

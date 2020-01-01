@@ -3,7 +3,7 @@
         <g>
             <polygon :points="points()"></polygon>
             <circle cx="100" cy="100" r="80"></circle>
-            <template v-for="(key, index) in Array.from(params.getAll().keys())">
+            <template v-for="(key, index) in params.keys()">
                 <text :x="labelPoint(key, index).x" :y="labelPoint(key, index).y">{{key}}</text>
             </template>
         </g>
@@ -16,22 +16,21 @@
 
     @Component
     export default class PolygraphComponent extends Vue {
-        @Prop({ required:true}) params: Params
+        @Prop({ required:true }) params!: Params
 
         points () {
-            const total = Array.from(this.params.getAll().values()).length
-            const a = Array.from(this.params.getAll().values()).map((value, index) => {
-                const point = this.valueToPoint(Number(value), index + 1, total)
+            return Array.from(this.params.keys()).map((key, index) => {
+                const point = this.valueToPoint(this.params.value(key).valueOf(), index + 1)
                 return point.x + ',' + point.y
             }).join(' ')
-            return a
         }
 
         labelPoint(key: String, index: Number) {
-            return this.valueToPoint(this.params.getAll().get(key), index.valueOf() + 10, Array.from(this.params.getAll().values()).length)
+            return this.valueToPoint(this.params.value(key).valueOf() + 15, index.valueOf() + 1)
         }
 
-        private valueToPoint (value: Number, index: number, total: number):{x:Number, y:Number} {
+        private valueToPoint (value: number, index: number):{x:Number, y:Number} {
+            var total = this.params.keys().length
             var x     = 0
             var y     = -value * 0.8
             var angle = Math.PI * 2 / total * index

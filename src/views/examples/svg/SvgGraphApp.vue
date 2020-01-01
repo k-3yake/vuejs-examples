@@ -29,23 +29,36 @@
 
     export class Params {
         private _params: Map<String, Number> = new Map()
+        private _keys: Array<String> = []
 
-        public add(label: String){
-            this._params.set(label,100)
-            this._params = new Map(this._params)
+        keys(): ReadonlyArray<String> {
+            return this._keys
         }
 
-        getAll(): ReadonlyMap<String, Number> {
-            return this._params;
+        value(key: String):Number {
+            return <Number>this._params.get(key)
+        }
+
+        add(key: String){
+            this._keys.push(key)
+            this._params.set(key,100)
+            this.refresh();
         }
 
         delete(key: String) {
+            const index = this._keys.indexOf(key)
+            this._keys.splice(index,1);
             this._params.delete(key)
-            this._params = new Map(this._params)
+            this.refresh()
         }
 
         changeValue(key: String, value: Number) {
             this._params.set(key, value)
+            this.refresh()
+        }
+
+        private refresh() {
+            this._keys = Array.from(this._keys)
             this._params = new Map(this._params)
         }
     }
