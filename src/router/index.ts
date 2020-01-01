@@ -66,8 +66,12 @@ const routes = [
     path: '/TreeView',
     name: 'TreeView',
     component: () => import('../views/examples/tree/TreeViewApp.vue')
+  },
+  {
+    path: '/SvgGraph',
+    name: 'SvgGraph',
+    component: () => import('../views/examples/svg/SvgGraphApp.vue')
   }
-
 ]
 
 const router = new VueRouter({

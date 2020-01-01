@@ -33,5 +33,8 @@
     <div>
       <router-link to="/TreeView">TreeView</router-link>
     </div>
+    <div>
+      <router-link to="/SvgGraph">SvgGraph</router-link>
+    </div>
   </div>
 </template>
