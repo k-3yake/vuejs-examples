@@ -71,6 +71,11 @@ const routes = [
     path: '/SvgGraph',
     name: 'SvgGraph',
     component: () => import('../views/examples/svg/SvgGraphApp.vue')
+  },
+  {
+    path: '/ModalComponent',
+    name: 'ModalComponent',
+    component: () => import('../views/examples/modal/ModalApp.vue')
   }
 ]
 

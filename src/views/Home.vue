@@ -36,5 +36,8 @@
     <div>
       <router-link to="/SvgGraph">SvgGraph</router-link>
     </div>
+    <div>
+      <router-link to="/ModalComponent">ModalComponent</router-link>
+    </div>
   </div>
 </template>
