@@ -76,6 +76,11 @@ const routes = [
     path: '/ModalComponent',
     name: 'ModalComponent',
     component: () => import('../views/examples/modal/ModalApp.vue')
+  },
+  {
+    path: '/Wrapper',
+    name: 'Wrapper',
+    component: () => import('../views/examples/wrapper/WrapperApp.vue')
   }
 ]
 

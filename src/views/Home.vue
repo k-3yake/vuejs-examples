@@ -39,5 +39,8 @@
     <div>
       <router-link to="/ModalComponent">ModalComponent</router-link>
     </div>
+    <div>
+      <router-link to="/Wrapper">Wrapper</router-link>
+    </div>
   </div>
 </template>

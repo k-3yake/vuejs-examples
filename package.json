@@ -15,7 +15,8 @@
     "vue-mixin-decorator": "~1.2.0",
     "marked": "^0.8.0",
     "lodash": "^4.17.15",
-    "moment": "^2.24.0"
+    "moment": "^2.24.0",
+    "select2": "^4.0.12"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^4.0.0",
@@ -26,9 +27,11 @@
     "vue-template-compiler": "^2.6.10",
     "@types/marked": "^0.7.2",
     "@types/lodash": "^4.14.149",
+    "@types/select2": "^4.0.12",
     "jest": "^24.0.25",
     "ts-jest": "^24.0.25",
-    "@types/jest": "^24.0.25"
+    "@types/jest": "^24.0.25",
+    "@types/jquery": "^3.3.31"
   },
   "postcss": {
     "plugins": {
