@@ -29,8 +29,12 @@
     "@types/lodash": "^4.14.149",
     "@types/select2": "^4.0.12",
     "jest": "^24.0.25",
+    "vue-jest": "^3.0.5",
+    "@types/jest": "^24.0.23",
+    "babel-jest": "^24.9.0",
     "ts-jest": "^24.0.25",
-    "@types/jest": "^24.0.25",
+    "@vue/test-utils": "^1.0.0-beta.30",
+    "@vue/cli-plugin-unit-jest": "^4.1.1",
     "@types/jquery": "^3.3.31"
   },
   "postcss": {
@@ -41,5 +45,23 @@
   "browserslist": [
     "> 1%",
     "last 2 versions"
-  ]
+  ],
+  "jest": {
+    "preset": "@vue/cli-plugin-unit-jest/presets/typescript",
+    "moduleFileExtensions": [
+      "js",
+      "ts",
+      "json",
+      "vue"
+    ],
+    "transform": {
+      ".*\\.(vue)$": "vue-jest",
+      "^.+\\.js$": "<rootDir>/node_modules/babel-jest",
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testMatch": [
+      "**/__tests__/**/*.(js|ts|tsx)",
+      "**/?(*.)+(spec|test).(js|ts|tsx)"
+    ]
+  }
 }
