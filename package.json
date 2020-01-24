@@ -35,7 +35,9 @@
     "ts-jest": "^24.0.25",
     "@vue/test-utils": "^1.0.0-beta.30",
     "@vue/cli-plugin-unit-jest": "^4.1.1",
-    "@types/jquery": "^3.3.31"
+    "@types/jquery": "^3.3.31",
+    "jest-when": "^2.7.0",
+    "@types/jest-when": "^2.7.0"
   },
   "postcss": {
     "plugins": {
@@ -51,8 +53,7 @@
     "moduleFileExtensions": [
       "js",
       "ts",
-      "json",
-      "vue"
+      "json"
     ],
     "transform": {
       ".*\\.(vue)$": "vue-jest",

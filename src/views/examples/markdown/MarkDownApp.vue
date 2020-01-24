@@ -17,9 +17,9 @@
 
 
         public update(event: Event){
-            if (event.target instanceof HTMLTextAreaElement) {
+            if (event.target instanceof HTMLInputElement) {
                 const self = this;
-                const f = _.debounce( (event) => self.inputValue = event.target.value, 300)
+                const f = _.debounce( (event) => self.inputValue = event.target.checkedvalue, 300)
                 f(event)
             }
         }

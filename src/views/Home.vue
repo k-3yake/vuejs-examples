@@ -42,5 +42,8 @@
     <div>
       <router-link to="/Wrapper">Wrapper</router-link>
     </div>
+    <div>
+      <router-link to="/FireBase">FireBase</router-link>
+    </div>
   </div>
 </template>
