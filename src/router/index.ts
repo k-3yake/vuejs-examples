@@ -81,6 +81,11 @@ const routes = [
     path: '/Wrapper',
     name: 'Wrapper',
     component: () => import('../views/examples/wrapper/WrapperApp.vue')
+  },
+  {
+    path: '/FireBase',
+    name: 'FireBase',
+    component: () => import('../views/examples/firebase/FireBasePage.vue')
   }
 ]
 

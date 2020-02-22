@@ -16,7 +16,9 @@
     "marked": "^0.8.0",
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
-    "select2": "^4.0.12"
+    "select2": "^4.0.12",
+    "firebase": "^7.7.0",
+    "vuefire": "^2.2.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^4.0.0",
