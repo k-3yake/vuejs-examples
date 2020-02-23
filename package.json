@@ -17,8 +17,7 @@
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
     "select2": "^4.0.12",
-    "firebase": "^7.7.0",
-    "vuefire": "^2.2.1"
+    "firebase": "^7.7.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^4.0.0",
@@ -39,7 +38,8 @@
     "@vue/cli-plugin-unit-jest": "^4.1.1",
     "@types/jquery": "^3.3.31",
     "jest-when": "^2.7.0",
-    "@types/jest-when": "^2.7.0"
+    "@types/jest-when": "^2.7.0",
+    "flush-promises": "^1.0.2"
   },
   "postcss": {
     "plugins": {
