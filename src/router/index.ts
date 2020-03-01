@@ -86,6 +86,11 @@ const routes = [
     path: '/FireBase',
     name: 'FireBase',
     component: () => import('../views/examples/firebase/FireBasePage.vue')
+  },
+  {
+    path: '/TodoMvc',
+    name: 'TodoMvc',
+    component: () => import('../views/examples/todo-mvc/TodoPage.vue')
   }
 ]
 

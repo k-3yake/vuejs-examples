@@ -1,19 +1,17 @@
 <template>
     <div>
-        <add-todo-row @addTodo="addTodo"/>
-        <todo-row v-for="(todo,index) in this.todoStorage.todoList"
+        <add-todo-row :todoStorage="todoStorage"/>
+        <todo-row v-for="(todo,index) in todoList"
                   :key="todo.name"
-                  todo="todo"
-                  @completed="completed"
-                  @active="active"
+                  :todoStorage="todoStorage"
+                  :todo="todo"
                   :data-test="'todo-row-' + todo.name" />
     </div>
 </template>
 
 <script lang="ts">
-    import {Vue, Component, Prop, Watch} from 'vue-property-decorator'
-import AddTodoRow from "@/views/examples/todo-mvc/AooTodoRow.vue";
-import Todo from "@/views/examples/todo-mvc/Todo";
+import {Vue, Component, Prop, Watch} from 'vue-property-decorator'
+import AddTodoRow from "@/views/examples/todo-mvc/AddTodoRow.vue";
 import TodoRow from "@/views/examples/todo-mvc/TodoRow.vue";
 import TodoStorage from "@/views/examples/todo-mvc/TodoStorage";
 
@@ -21,23 +19,11 @@ import TodoStorage from "@/views/examples/todo-mvc/TodoStorage";
     components: { AddTodoRow, TodoRow }
 })
 export default class TodoPage extends Vue {
-    private todoStorage = new TodoStorage();
+    todoStorage = new TodoStorage();
+    todoList = this.todoStorage.getTodoList()
 
-    private addTodo(name:string) {
-        this.todoStorage.add(new Todo(name))
-    }
 
-    private completed(todo:Todo) {
-        todo.completed()
-        this.todoStorage.save(todo)
-    }
-
-    private active(todo: Todo) {
-        todo.active()
-        this.todoStorage.save(todo)
-    }
 }
-
 
 </script>
 

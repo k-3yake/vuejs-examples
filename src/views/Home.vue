@@ -45,5 +45,8 @@
     <div>
       <router-link to="/FireBase">FireBase</router-link>
     </div>
+    <div>
+      <router-link to="/TodoMvc">TodoMvc</router-link>
+    </div>
   </div>
 </template>

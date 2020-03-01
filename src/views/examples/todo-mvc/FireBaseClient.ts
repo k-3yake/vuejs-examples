@@ -24,10 +24,11 @@ export default class FireBaseClient {
     }
 
     get():Array<Todo> {
-        const todoList = new Array()
+        const todoList = new Array<Todo>()
         this.todoRef.get().then( snapshot => {
             snapshot.forEach( doc => {
-                todoList.push(doc.data())
+                const items = doc.data();
+                todoList.push(new Todo(items._name, items.isActive))
             })
         });
         return todoList

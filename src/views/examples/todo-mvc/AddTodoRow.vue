@@ -12,10 +12,10 @@ import TodoStorage from "@/views/examples/todo-mvc/TodoStorage";
 @Component
 export default class AddTodoRow extends Vue {
     @Prop({required:true})
-    private todoStorage!: TodoStorage
+    todoStorage!: TodoStorage
 
-    private addTodo(name: string) {
-        this.todoStorage.add(new Todo(name))
+    addTodo(name: string) {
+        this.todoStorage.save(new Todo(name))
     }
 }
 </script>

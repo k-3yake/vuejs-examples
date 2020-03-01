@@ -2,22 +2,26 @@ import 'jest';
 import TodoRow from "@/views/examples/todo-mvc/TodoRow.vue";
 import Todo from "@/views/examples/todo-mvc/Todo";
 import TodoStorage from "@/views/examples/todo-mvc/TodoStorage";
-import {when} from "jest-when";
+import {verifyAllWhenMocksCalled, when} from "jest-when";
 import FireBaseClient from "@/views/examples/todo-mvc/FireBaseClient";
 import flushPromises from 'flush-promises'
 
 jest.mock("@/views/examples/todo-mvc/FireBaseClient")
 
-describe('TodoRow', () => {
+describe('TodoStrage', () => {
     const initialList = new Array(new Todo("todo1"),new Todo("todo2"),new Todo("todo3"))
 
     beforeEach(() => {
         when(FireBaseClient.prototype.get as any).calledWith().mockReturnValueOnce(Object.assign([],initialList))
     })
 
+    afterEach(() => {
+        verifyAllWhenMocksCalled()
+    })
+
     test('取得のテスト_clientで取得出来た場合_その結果を返す', () => {
         const todoStorage = new TodoStorage()
-        expect(todoStorage.todoList).toEqual(initialList)
+        expect(todoStorage.getTodoList()).toEqual(initialList)
     })
 
     test('保存のテスト_新規のTODOでclientで保存出来た場合_一覧に追加される', async () => {
@@ -30,8 +34,8 @@ describe('TodoRow', () => {
         todoStorage.save(addedTodo)
         await flushPromises()
 
-        expect(todoStorage.todoList.length).toEqual(initialList.length + 1)
-        expect(todoStorage.todoList[initialList.length]).toEqual(addedTodo)
+        expect(todoStorage.getTodoList().length).toEqual(initialList.length + 1)
+        expect(todoStorage.getTodoList()[initialList.length]).toEqual(addedTodo)
     })
 
     test('保存のテスト_既存のTODOでclientで保存出来た場合_一覧が更新される', async () => {
@@ -44,6 +48,19 @@ describe('TodoRow', () => {
         todoStorage.save(updatedTodo)
         await flushPromises()
 
-        expect(todoStorage.todoList[1]).toEqual(updatedTodo)
+        expect(todoStorage.getTodoList()[1]).toEqual(updatedTodo)
+    })
+
+    test('削除のテスト_clientで削除出来た場合_一覧から消える', async () => {
+        const deletedTodo = initialList[1]
+        // TODO ts-ignoreを外したい
+        // @ts-ignore
+        when(FireBaseClient.prototype.remove as any).expectCalledWith(deletedTodo).mockResolvedValueOnce(Promise.resolve())
+        const todoStorage = new TodoStorage()
+
+        todoStorage.remove(deletedTodo)
+        await flushPromises()
+
+        expect(todoStorage.getTodoList().indexOf(deletedTodo)).toEqual(-1)
     })
 })

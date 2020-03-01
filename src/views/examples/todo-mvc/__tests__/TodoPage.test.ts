@@ -1,9 +1,13 @@
 import 'jest';
 import {mount} from '@vue/test-utils'
 import TodoPage from "@/views/examples/todo-mvc/TodoPage.vue";
-import AddTodoRow from "@/views/examples/todo-mvc/AooTodoRow.vue";
+import AddTodoRow from "@/views/examples/todo-mvc/AddTodoRow.vue";
 import Todo from "@/views/examples/todo-mvc/Todo";
 import Vue from "vue";
+import TodoStorage from "@/views/examples/todo-mvc/TodoStorage";
+import {when} from "jest-when";
+
+jest.mock("@/views/examples/todo-mvc/TodoStorage")
 
 describe('TodoPage', () => {
 
@@ -12,29 +16,19 @@ describe('TodoPage', () => {
         expect(wrapper.find(AddTodoRow).exists()).toBeTruthy()
     })
 
-    test('追加のテスト_ストレージに追加があった場合_追加されたTODOが表示される', async () => {
+    test('追加のテスト_リストに変更があった場合_リストを変更して表示する', async () => {
+        const todoList = new Array()
+
+        when(TodoStorage.prototype.getTodoList as any)
+            .calledWith()
+            .mockReturnValue(todoList)
+
         const wrapper = mount(TodoPage)
-        wrapper.vm.$data.todoStorage.add(new Todo("added1"))
-        await Vue.nextTick()
-
-        expect(wrapper.find('[data-test="todo-row-added1"]').exists()).toBeTruthy()
-    })
-
-    test('削除のテスト_ストレージから削除された場合_リストにそのTODOが表示されない',async () => {
-        // given
-        const wrapper = mount(TodoPage)
-        const todo = new Todo("added1");
-        wrapper.vm.$data.todoStorage.add(todo)
-        await Vue.nextTick()
-        expect(wrapper.find('[data-test="todo-row-added1"]').exists()).toBeTruthy()
-
-        // when
-        wrapper.vm.$data.todoStorage.remove(todo)
-        await Vue.nextTick()
-
-        // then
-        console.log(wrapper.html())
         expect(wrapper.find('[data-test="todo-row-added1"]').exists()).not.toBeTruthy()
+        todoList.push(new Todo("added1"))
+        await Vue.nextTick()
+
+        expect(wrapper.find('[data-test="todo-row-added1"]').exists()).toBeTruthy()
     })
 
     test('フィルターのテスト_ALLの場合_ActiveもCompletedも表示される', () => {
