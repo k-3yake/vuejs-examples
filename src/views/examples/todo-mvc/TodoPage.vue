@@ -6,6 +6,7 @@
                   :todoStorage="todoStorage"
                   :todo="todo"
                   :data-test="'todo-row-' + todo.name" />
+        <todo-list-menu :todoStorage="todoStorage"/>
     </div>
 </template>
 
@@ -14,14 +15,17 @@ import {Vue, Component, Prop, Watch} from 'vue-property-decorator'
 import AddTodoRow from "@/views/examples/todo-mvc/AddTodoRow.vue";
 import TodoRow from "@/views/examples/todo-mvc/TodoRow.vue";
 import TodoStorage from "@/views/examples/todo-mvc/TodoStorage";
+import TodoListMenu from "@/views/examples/todo-mvc/TodoListMenu.vue";
 
 @Component({
-    components: { AddTodoRow, TodoRow }
+    components: { AddTodoRow, TodoRow, TodoListMenu }
 })
 export default class TodoPage extends Vue {
     todoStorage = new TodoStorage();
-    todoList = this.todoStorage.getTodoList()
 
+    get todoList() {
+        return this.todoStorage.getTodoList()
+    }
 
 }
 

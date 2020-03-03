@@ -1,7 +1,7 @@
 import 'jest';
 import {mount} from '@vue/test-utils'
 import TodoRow from "@/views/examples/todo-mvc/TodoRow.vue";
-import Todo from "@/views/examples/todo-mvc/Todo";
+import {Todo, TodoStatus} from "@/views/examples/todo-mvc/Todo";
 import TodoStorage from "@/views/examples/todo-mvc/TodoStorage";
 import {verifyAllWhenMocksCalled, when} from "jest-when";
 
@@ -16,7 +16,7 @@ describe('TodoRow', () => {
     }
 
     test('表示のテスト_todoがActiveの場合_Activeとして表示する', () => {
-        const todo = new Todo("todoName",true);
+        const todo = new Todo("todoName");
         const wrapper = mountTodoRow(todo,new TodoStorage());
         expect(wrapper.find("[data-test='todo-row-status']").attributes().value).toEqual("Active")
         expect(wrapper.find("[data-test='todo-row-name']").text()).toEqual("todoName")
@@ -26,24 +26,24 @@ describe('TodoRow', () => {
         const todo = new Todo("todoName");
         const todoStorage = new TodoStorage();
         const wrapper = mountTodoRow(todo, todoStorage);
-        when(todoStorage.save as any).expectCalledWith(new Todo("todoName",false)).mockReturnValue(null)
+        when(todoStorage.save as any).expectCalledWith(new Todo("todoName",TodoStatus.COMPLETED)).mockReturnValue(null)
         wrapper.find("[data-test='todo-row-status']").trigger('click')
 
         verifyAllWhenMocksCalled()
     })
 
     test('ステータス変更のテスト_todoがCompletedの場合_Activeへの変更しストレージに保存する', () => {
-        const todo = new Todo("todoName",false);
+        const todo = new Todo("todoName",TodoStatus.COMPLETED);
         const todoStorage = new TodoStorage();
         const wrapper = mountTodoRow(todo, todoStorage);
-        when(todoStorage.save as any).expectCalledWith(new Todo("todoName",true)).mockReturnValue(null)
+        when(todoStorage.save as any).expectCalledWith(new Todo("todoName",TodoStatus.ACTIVE)).mockReturnValue(null)
         wrapper.find("[data-test='todo-row-status']").trigger('click')
 
         verifyAllWhenMocksCalled()
     })
 
     test('削除のテスト_削除した場合_ストレージから削除する', () => {
-        const todo = new Todo("todoName",false);
+        const todo = new Todo("todoName",TodoStatus.COMPLETED);
         const todoStorage = new TodoStorage();
         const wrapper = mountTodoRow(todo, todoStorage);
         when(todoStorage.remove as any).expectCalledWith(todo).mockReturnValue(null)

@@ -6,7 +6,7 @@
 
 <script lang="ts">
 import {Vue, Component, Prop} from 'vue-property-decorator'
-import Todo from "@/views/examples/todo-mvc/Todo";
+import {Todo} from "@/views/examples/todo-mvc/Todo";
 import TodoStorage from "@/views/examples/todo-mvc/TodoStorage";
 
 @Component

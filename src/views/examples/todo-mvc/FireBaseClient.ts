@@ -3,7 +3,7 @@ import * as firebase from "firebase/app";
 import "firebase/firestore";
 import CollectionReference = firebase.firestore.CollectionReference;
 import DocumentData = firebase.firestore.DocumentData;
-import Todo from "@/views/examples/todo-mvc/Todo";
+import {Todo} from "@/views/examples/todo-mvc/Todo";
 
 export default class FireBaseClient {
     private todoRef:CollectionReference<DocumentData>;

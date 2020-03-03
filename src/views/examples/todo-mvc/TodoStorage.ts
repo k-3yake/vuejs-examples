@@ -1,18 +1,22 @@
-import Todo from "@/views/examples/todo-mvc/Todo";
+import {Todo,TodoStatus} from "@/views/examples/todo-mvc/Todo";
 import FireBaseClient from "@/views/examples/todo-mvc/FireBaseClient";
+import functions from "firebase";
 
 export default class TodoStorage {
-    private readonly todoList: Array<Todo>
+    private todoList: Array<Todo>
     private client = new FireBaseClient()
+    private _filter:Filter = function (todo: Todo) { return true }
 
     constructor() {
-        console.log("init storage")
-        this.todoList = this.client.get()
+        this.todoList = this.client.get();
+    }
+
+    fetch() {
+        this.todoList = this.client.get();
     }
 
     getTodoList(): Array<Todo> {
-        console.log("get storage")
-        return this.todoList
+        return this.todoList.filter(this._filter)
     }
 
     save(savedTodo: Todo) {
@@ -24,8 +28,7 @@ export default class TodoStorage {
                 } else {
                     this.todoList.push(savedTodo)
                 }
-            })
-            .catch((e) => alert(e))
+            }).catch((e) => alert(e))
     }
 
     remove(removedTodo: Todo) {
@@ -35,4 +38,16 @@ export default class TodoStorage {
             })
         }).catch((e) => alert(e))
     }
+
+    filter(todoStatus: TodoStatus) {
+        this._filter = function(todo:Todo) { return todo.statusVal == todoStatus}
+    }
+
+    filterRemove() {
+        this._filter = function(todo:Todo) { return true}
+    }
+}
+
+interface Filter {
+    (todo:Todo) : Boolean
 }
